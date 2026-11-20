@@ -16,6 +16,20 @@ const ErrorResponseSchema = z.object({
   error: z.string().optional(),
 });
 
+// Check user input before sending it. Zod's own error message is a JSON list,
+// so throw only the first readable message (e.g. "Select at least one element.").
+export function parseInput<T extends z.ZodType>(schema: T, input: unknown): z.output<T> {
+  const result = schema.safeParse(input);
+  if (!result.success) throw new Error(result.error.issues[0]?.message ?? "Invalid input.");
+  return result.data;
+}
+
+// Headers for protected JSON endpoints (everything except register/login)
+export function authHeaders(accessToken: string) {
+  if (!accessToken.trim()) throw new Error("Sign in to continue.");
+  return { "Content-Type": "application/json", Authorization: "Bearer " + accessToken };
+}
+
 export async function apiRequest(path: string, options: RequestInit = {}): Promise<unknown> {
   const baseUrl = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/$/, "");
   if (!baseUrl) {

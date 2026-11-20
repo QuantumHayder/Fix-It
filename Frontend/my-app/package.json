@@ -7,9 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test:auth": "tsx --test tests/auth.test.ts"
+    "test:auth": "tsx --test tests/auth.test.ts",
+    "test:websites": "tsx --test tests/websites.test.ts",
+    "test:snapshots": "tsx --test tests/snapshots.test.ts",
+    "test:llm": "tsx --test tests/llm.test.ts",
+    "test": "tsx --test tests/*.test.ts"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "@tanstack/react-query": "^5.107.1",
     "next": "16.4.6",
     "react": "19.3.0",
@@ -27,5 +32,8 @@
     "tailwindcss": "4.3.3",
     "tsx": "^4.23.15",
     "typescript": "^5"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
   }
 }

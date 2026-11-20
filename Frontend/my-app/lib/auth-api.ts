@@ -1,4 +1,4 @@
-import { apiRequest } from "./api-client";
+import { apiRequest, parseInput } from "./api-client";
 import {
   LoginRequestSchema, LoginResponseSchema, RegisterRequestSchema, UserInfoSchema,
   type LoginRequest, type RegisterRequest,
@@ -7,7 +7,7 @@ import {
 const JSON_HEADERS = { "Content-Type": "application/json" };
 
 export async function login(credentials: LoginRequest) {
-  const payload = LoginRequestSchema.parse(credentials);
+  const payload = parseInput(LoginRequestSchema, credentials);
   const body = await apiRequest("/auth/login", {
     method: "POST",
     headers: JSON_HEADERS,
@@ -19,7 +19,7 @@ export async function login(credentials: LoginRequest) {
 }
 
 export async function register(input: RegisterRequest) {
-  const p = RegisterRequestSchema.parse(input);
+  const p = parseInput(RegisterRequestSchema, input);
   const body = await apiRequest("/auth/register", {
     method: "POST",
     headers: JSON_HEADERS,
