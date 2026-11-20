@@ -4,7 +4,7 @@ from fastapi.responses import JSONResponse
 
 from app.core.config import settings
 from app.core.exceptions import AppError
-from app.routers import auth
+from app.routers import auth, llm, snapshots, websites
 
 app = FastAPI(title="Web Testing Assistant")
 
@@ -32,3 +32,6 @@ def health():
 
 
 app.include_router(auth.router)
+app.include_router(websites.router)
+app.include_router(snapshots.router)
+app.include_router(llm.router)

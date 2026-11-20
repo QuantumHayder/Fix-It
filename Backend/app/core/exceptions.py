@@ -22,3 +22,13 @@ class PermissionDeniedError(AppError):
 
 class NotFoundError(AppError):
     status_code = 404
+
+
+class LLMError(AppError):
+    """The model could not be reached or gave an unusable answer."""
+    status_code = 503
+
+
+class RunnerError(AppError):
+    """The browser runner failed (page unreachable, timeout, crash...)."""
+    status_code = 502

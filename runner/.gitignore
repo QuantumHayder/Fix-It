@@ -1,0 +1,3 @@
+# temporary job folders (job.json, result.json, screenshot.png)
+jobs/
+__pycache__/
