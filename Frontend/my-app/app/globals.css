@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+  /* Text palette for the softened orange and blue background. */
+  --hero-surface: #efaf42;
+  --hero-foreground: #112ae8;
+  --hero-muted: #35415d;
+  --hero-orange: #ee6d23;
+  --hero-blue: #112ae8;
+  --site-surface: #fff8ed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-hero-surface: var(--hero-surface);
+  --color-hero: var(--hero-foreground);
+  --color-hero-muted: var(--hero-muted);
+  --color-hero-orange: var(--hero-orange);
+  --color-hero-blue: var(--hero-blue);
+  --color-site-surface: var(--site-surface);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.site-link:focus-visible {
+  outline: 2px solid var(--hero-blue);
+  outline-offset: 4px;
+}
